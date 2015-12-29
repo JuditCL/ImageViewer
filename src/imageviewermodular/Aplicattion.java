@@ -6,6 +6,7 @@
 package imageviewermodular;
 
 import imageviewermodular.control.Command;
+import imageviewermodular.control.MenuImageCommand;
 import imageviewermodular.control.NextImageCommand;
 import imageviewermodular.control.PrevImageCommand;
 import imageviewermodular.model.Image;
@@ -58,6 +59,7 @@ public class Aplicattion extends JFrame{
     }
 
     private void createCommands() {
+        commands.put("menu", new MenuImageCommand());
         commands.put("next", new NextImageCommand(imageDisplay));
         commands.put("prev", new PrevImageCommand(imageDisplay));
     }
@@ -74,6 +76,7 @@ public class Aplicattion extends JFrame{
 
     private Component toolbar() {
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        panel.add(menuButton());
         panel.add(prevButton());
         panel.add(nextButton());
         return panel;
@@ -91,6 +94,12 @@ public class Aplicattion extends JFrame{
         return button;      
     }
 
+    private JButton menuButton() {
+        JButton button = new JButton("|||");
+        button.addActionListener(doCommand("menu"));
+        return button;
+    }
+    
     private ActionListener doCommand(final String operation) {
         return new ActionListener() {
             @Override
@@ -108,4 +117,5 @@ public class Aplicattion extends JFrame{
         file2 = chooser.getCurrentDirectory();
         //this.setText(file2.getName());
     }
+
 }
