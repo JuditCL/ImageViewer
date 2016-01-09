@@ -1,6 +1,7 @@
 package imageviewermodular.control;
-
-import imageviewermodular.model.Image;
+/**************************************************/
+/*Imageviewer por Judit del Carmen Correa Luciano */
+/**************************************************/
 import imageviewermodular.view.ImageDisplay;
 
 public class MenosImageCommand implements Command {

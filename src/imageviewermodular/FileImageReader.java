@@ -1,10 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package imageviewermodular;
-
+/**************************************************/
+/*Imageviewer por Judit del Carmen Correa Luciano */
+/**************************************************/
 import imageviewermodular.model.Image;
 import imageviewermodular.view.ImageReader;
 import java.io.File;
@@ -12,10 +9,6 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-/**
- *
- * @author Universidad
- */
 public class FileImageReader implements ImageReader{
     private final File[] files;
     private static final String[] ImageEstensions = {".jpg",".png",".gift"};

@@ -1,5 +1,7 @@
 package imageviewermodular;
-
+/**************************************************/
+/*Imageviewer por Judit del Carmen Correa Luciano */
+/**************************************************/
 import imageviewermodular.control.Command;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

@@ -1,0 +1,9 @@
+Práctica final del Image Viewer propuesta en clase, realizada por Judit del Carmen Correa Luciano.
+En esta práctica se adjuntan dos imágenes que se usan en la interfaz gráfica de la aplicación.
+También he adjuntado un diagrama UML con la relación de las clases, he obviado los métodos ya que si no quedaba menos claro y engorroso.
+Se han añadido funcionalidades extras además de lo requerido, estas son:
+1. Se puede avanzar y retroceder imágenes haciendo click sobre la imagen y desplazando adelante y atrás, también con los botones del menú o con los cursores derecha e izquierda.
+2. Se puede aumentar y disminuir la imagen con los botones del menú o con la rueda del ratón o bien con los cursores arriba y abajo.
+3. Se puede abrir otro directorio haciendo click en el menú |||
+4. Se abrirá al principio de todo un navegador de archivos para elegir el directorio.
+5. Se le ha añadido una barra de menú con información e instrucciones.
