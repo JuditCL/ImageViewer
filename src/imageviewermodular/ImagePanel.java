@@ -9,7 +9,6 @@ import imageviewermodular.model.Image;
 import imageviewermodular.view.ImageDisplay;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 import javax.swing.JPanel;
 
 /**
@@ -38,5 +37,5 @@ public class ImagePanel extends JPanel implements ImageDisplay{
     protected void paintComponent(Graphics g) {
         g.drawImage((BufferedImage) image.bitmap(), 0, 0,this.getWidth(), this.getHeight(), this.getBackground(), this);
     }
-    
+
 }

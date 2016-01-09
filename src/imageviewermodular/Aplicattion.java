@@ -1,23 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package imageviewermodular;
 
-import imageviewermodular.control.Command;
 import imageviewermodular.control.MenuImageCommand;
 import imageviewermodular.control.NextImageCommand;
 import imageviewermodular.control.PrevImageCommand;
+import imageviewermodular.control.Command;
 import imageviewermodular.model.Image;
 import imageviewermodular.view.ImageDisplay;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Point;
 import java.awt.PopupMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,36 +24,33 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-/**
- *
- * @author Universidad
- */
-public class Aplicattion extends JFrame{
+public class Aplicattion extends JFrame implements MouseListener {
 
-    private final Map<String,Command> commands = new HashMap<>();
+    private final Map<String, Command> commands = new HashMap<>();
     private ImageDisplay imageDisplay;
     private File file2;
-    /**
-     * @param args the command line arguments
-     */
+    private Point ini;
+    private Point fin;
+
     public static void main(String[] args) {
         new Aplicattion().setVisible(true);
-        
+
     }
 
     public Aplicattion() {
         this.createChooser();
         this.deployUI();
         this.createCommands();
+        this.addMouseListener(this);
     }
 
     private void deployUI() {
         this.setTitle("Image viewer");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setMinimumSize(new Dimension(500,500));
+        this.setMinimumSize(new Dimension(500, 500));
         this.setLocationRelativeTo(null);
         this.getContentPane().add(imagePanel());
-        this.getContentPane().add(toolbar(),BorderLayout.SOUTH);
+        this.getContentPane().add(toolbar(), BorderLayout.SOUTH);
     }
 
     private void createCommands() {
@@ -91,7 +86,7 @@ public class Aplicattion extends JFrame{
     private JButton prevButton() {
         JButton button = new JButton("<");
         button.addActionListener(doCommand("prev"));
-        return button;      
+        return button;
     }
 
     private JButton menuButton() {
@@ -99,7 +94,7 @@ public class Aplicattion extends JFrame{
         button.addActionListener(doCommand("menu"));
         return button;
     }
-    
+
     private ActionListener doCommand(final String operation) {
         return new ActionListener() {
             @Override
@@ -113,9 +108,38 @@ public class Aplicattion extends JFrame{
         JFileChooser chooser = new JFileChooser();
         File file = chooser.getCurrentDirectory();
         chooser.setCurrentDirectory(file);
-        if ((chooser.showOpenDialog(this))!=JFileChooser.APPROVE_OPTION) return;
+        if ((chooser.showOpenDialog(this)) != JFileChooser.APPROVE_OPTION) {
+            return;
+        }
         file2 = chooser.getCurrentDirectory();
-        //this.setText(file2.getName());
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent me) {
+        
+    }
+
+    @Override
+    public void mousePressed(MouseEvent me) {
+        ini = me.getPoint();
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent me) {
+        fin = me.getPoint();
+        if ((fin.x - ini.x) < 0) {
+            commands.get("next").execute();
+        } else {
+            commands.get("prev").execute();
+        }
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent me) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent me) {
     }
 
 }
