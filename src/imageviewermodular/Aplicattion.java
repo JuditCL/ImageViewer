@@ -3,6 +3,8 @@ package imageviewermodular;
 import imageviewermodular.control.MenuImageCommand;
 import imageviewermodular.control.NextImageCommand;
 import imageviewermodular.control.PrevImageCommand;
+import imageviewermodular.control.MasImageCommand;
+import imageviewermodular.control.MenosImageCommand;
 import imageviewermodular.control.Command;
 import imageviewermodular.model.Image;
 import imageviewermodular.view.ImageDisplay;
@@ -57,6 +59,8 @@ public class Aplicattion extends JFrame implements MouseListener {
         commands.put("menu", new MenuImageCommand());
         commands.put("next", new NextImageCommand(imageDisplay));
         commands.put("prev", new PrevImageCommand(imageDisplay));
+        commands.put("mas", new MasImageCommand(imageDisplay));
+        commands.put("menos", new MenosImageCommand(imageDisplay));
     }
 
     private ImagePanel imagePanel() {
@@ -74,6 +78,8 @@ public class Aplicattion extends JFrame implements MouseListener {
         panel.add(menuButton());
         panel.add(prevButton());
         panel.add(nextButton());
+        panel.add(masButton());
+        panel.add(menosButton());
         return panel;
     }
 
@@ -94,7 +100,20 @@ public class Aplicattion extends JFrame implements MouseListener {
         button.addActionListener(doCommand("menu"));
         return button;
     }
+    
+    private JButton masButton() {
+        JButton button = new JButton("+");
+        button.addActionListener(doCommand("mas"));
+        return button;
+    }
 
+    private JButton menosButton() {
+        JButton button = new JButton("-");
+        button.addActionListener(doCommand("menos"));
+        return button;
+    }
+
+    
     private ActionListener doCommand(final String operation) {
         return new ActionListener() {
             @Override
@@ -142,4 +161,6 @@ public class Aplicattion extends JFrame implements MouseListener {
     public void mouseExited(MouseEvent me) {
     }
 
+    
+    
 }

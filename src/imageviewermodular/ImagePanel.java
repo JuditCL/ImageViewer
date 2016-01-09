@@ -15,13 +15,21 @@ import javax.swing.JPanel;
  *
  * @author Universidad
  */
-public class ImagePanel extends JPanel implements ImageDisplay{
+public class ImagePanel extends JPanel implements ImageDisplay {
+
     private Image image;
+    private int escala;
 
     public ImagePanel(Image image) {
         this.image = image;
+        escala = 0;
     }
-       
+
+    @Override
+    public void setEscala(int escala) {
+        this.escala = this.escala + escala;
+    }
+
     @Override
     public Image image() {
         return this.image;
@@ -34,8 +42,13 @@ public class ImagePanel extends JPanel implements ImageDisplay{
     }
 
     @Override
-    protected void paintComponent(Graphics g) {
-        g.drawImage((BufferedImage) image.bitmap(), 0, 0,this.getWidth(), this.getHeight(), this.getBackground(), this);
+    public void paintComponent(Graphics g) {
+        if (this.getWidth() + escala >= 500 && this.getHeight() + escala >= 500) {
+            g.drawImage((BufferedImage) image.bitmap(), 0, 0, this.getWidth() + escala, this.getHeight() + escala, this.getBackground(), this);
+        } else {
+            g.drawImage((BufferedImage) image.bitmap(), 0, 0, 500, 500, this.getBackground(), this);
+        }
+
     }
 
 }
