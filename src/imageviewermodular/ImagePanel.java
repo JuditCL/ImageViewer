@@ -27,7 +27,11 @@ public class ImagePanel extends JPanel implements ImageDisplay {
 
     @Override
     public void setEscala(int escala) {
-        this.escala = this.escala + escala;
+        if(escala == 0){
+            this.escala = 0;
+        }else{
+           this.escala = this.escala + escala; 
+        }
     }
 
     @Override

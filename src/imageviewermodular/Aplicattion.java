@@ -16,6 +16,8 @@ import java.awt.Point;
 import java.awt.PopupMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseWheelEvent;
@@ -83,6 +85,9 @@ public class Aplicattion extends JFrame implements MouseListener,MouseWheelListe
         panel.add(nextButton());
         panel.add(masButton());
         panel.add(menosButton());
+        KeyListener listener = (KeyListener) new MyKeyListener(commands);
+	panel.addKeyListener(listener);
+	panel.setFocusable(true);
         return panel;
     }
 
@@ -172,4 +177,6 @@ public class Aplicattion extends JFrame implements MouseListener,MouseWheelListe
             commands.get("mas").execute();
         }
     }
+
+    
 }

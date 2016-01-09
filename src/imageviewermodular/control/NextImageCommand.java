@@ -19,6 +19,7 @@ public class NextImageCommand implements Command{
     }
     @Override
     public void execute() {
+        imageDisplay.setEscala(0);
         imageDisplay.show(imageDisplay.image().next());
     }
     
