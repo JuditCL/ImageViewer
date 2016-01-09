@@ -18,6 +18,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,7 +28,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class Aplicattion extends JFrame implements MouseListener {
+public class Aplicattion extends JFrame implements MouseListener,MouseWheelListener {
 
     private final Map<String, Command> commands = new HashMap<>();
     private ImageDisplay imageDisplay;
@@ -44,6 +46,7 @@ public class Aplicattion extends JFrame implements MouseListener {
         this.deployUI();
         this.createCommands();
         this.addMouseListener(this);
+        this.addMouseWheelListener(this);
     }
 
     private void deployUI() {
@@ -161,6 +164,12 @@ public class Aplicattion extends JFrame implements MouseListener {
     public void mouseExited(MouseEvent me) {
     }
 
-    
-    
+    @Override
+    public void mouseWheelMoved(MouseWheelEvent mwe) {
+        if(mwe.getUnitsToScroll()>0){
+            commands.get("menos").execute();
+        }else if(mwe.getUnitsToScroll()<0){
+            commands.get("mas").execute();
+        }
+    }
 }
