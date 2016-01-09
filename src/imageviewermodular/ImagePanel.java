@@ -52,7 +52,6 @@ public class ImagePanel extends JPanel implements ImageDisplay {
         } else {
             g.drawImage((BufferedImage) image.bitmap(), 0, 0, 500, 500, this.getBackground(), this);
         }
-
     }
 
 }

@@ -49,6 +49,9 @@ public class Aplicattion extends JFrame implements MouseListener,MouseWheelListe
         this.createCommands();
         this.addMouseListener(this);
         this.addMouseWheelListener(this);
+        KeyListener listener = (KeyListener) new MyKeyListener(commands);
+	this.addKeyListener(listener);
+	this.setFocusable(true);
     }
 
     private void deployUI() {
@@ -58,6 +61,7 @@ public class Aplicattion extends JFrame implements MouseListener,MouseWheelListe
         this.setLocationRelativeTo(null);
         this.getContentPane().add(imagePanel());
         this.getContentPane().add(toolbar(), BorderLayout.SOUTH);
+        this.getContentPane().add(new MenuBar().addMenu(), BorderLayout.NORTH);
     }
 
     private void createCommands() {
@@ -85,9 +89,6 @@ public class Aplicattion extends JFrame implements MouseListener,MouseWheelListe
         panel.add(nextButton());
         panel.add(masButton());
         panel.add(menosButton());
-        KeyListener listener = (KeyListener) new MyKeyListener(commands);
-	panel.addKeyListener(listener);
-	panel.setFocusable(true);
         return panel;
     }
 
